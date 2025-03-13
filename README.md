@@ -7,7 +7,7 @@ sudo snap install --dangerous --classic shresth-server-analyzer_1.0_amd64.snap
 - Done
   Now simply type 'shresth-server-analyzer' in your terminal.
   
-### Traditional way:-
+## Traditional way:-
 - cd into bin folder
   ```bash
   cd bin
