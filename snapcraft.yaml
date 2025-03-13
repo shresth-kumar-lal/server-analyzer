@@ -1,0 +1,21 @@
+name: shresth-server-analyzer
+base: core22
+version: '1.0'
+summary: Collect and display server performance stats
+description: |
+  A simple shell script that gathers and displays server performance statistics.
+
+grade: stable
+confinement: classic
+
+apps:
+  shresth-server-analyzer:
+    command: shresth-server-analyzer.sh  
+
+parts:
+  server-performance-stats:
+    plugin: dump
+    source: .
+    organize:
+      bin/shresth-server-analyzer.sh: shresth-server-analyzer.sh  # Moves to root
+
