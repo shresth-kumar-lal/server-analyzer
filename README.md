@@ -22,3 +22,7 @@ sudo snap install --dangerous --classic shresth-server-analyzer_1.0_amd64.snap
   ```
 - Done
   Now simply type 'server-analyzer' in your terminal.
+
+
+
+https://roadmap.sh/projects/server-stats
