@@ -32,7 +32,6 @@ total_cpu() {
 
 total_mem() {
     echo -e "\n${CYAN}== Total Memory Usage (Free vs Used) ==${NC}\n"
-    # Get memory info using free
     mem_total=$(free -m | awk '/Mem:/ {print $2}')
     mem_used=$(free -m | awk '/Mem:/ {print $3}')
     mem_free=$(free -m | awk '/Mem:/ {print $4}')
@@ -46,7 +45,6 @@ total_mem() {
 
 total_disk() {
     echo -e "\n${CYAN}== Total Disk Usage (Free vs Used) ==${NC}\n"
-    # Get disk info using df (root filesystem)
     disk_total=$(df -m / | awk 'NR==2 {print $2}')
     disk_used=$(df -m / | awk 'NR==2 {print $3}')
     disk_free=$(df -m / | awk 'NR==2 {print $4}')
@@ -57,6 +55,7 @@ total_disk() {
     echo -e "${WHITE}Free Disk Space:${NC} ${disk_free} MB"
     return 0
 }
+
 top_n_cpu() {
     echo -e "\n${YELLOW}How many processes do you want to display?${NC}"
     read -r n
@@ -80,8 +79,11 @@ now_uptime() {
 }
 
 load_avg() {
-    echo -e "\n${CYAN}== System Load Average ==${NC}"
-    cat /proc/loadavg
+    echo -e "\n${CYAN}== System Load Average ==${NC}\n"
+    read -r one five fifteen < /proc/loadavg
+    echo -e "${WHITE}1-minute Load Average:${NC} ${one}"
+    echo -e "${WHITE}5-minute Load Average:${NC} ${five}"
+    echo -e "${WHITE}15-minute Load Average:${NC} ${fifteen}"
     return 0
 }
 
@@ -97,14 +99,13 @@ failed_login() {
     return 0
 }
 
-# Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 WHITE='\033[1;37m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 while true; do
     features_available
